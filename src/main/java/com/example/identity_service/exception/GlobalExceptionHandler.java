@@ -5,6 +5,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.method.support.InvocableHandlerMethod;
+import org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod;
+
+import java.text.ParseException;
+
 @ControllerAdvice
 public class GlobalExceptionHandler {
 //    @ExceptionHandler(value = RuntimeException.class)
@@ -36,6 +41,14 @@ public class GlobalExceptionHandler {
         ApiResponse apiResponse = new ApiResponse();
         apiResponse.setMessage(errorCode.getMessage());
         apiResponse.setCode(errorCode.getCode());
+        return ResponseEntity.badRequest().body(apiResponse);
+    }
+    @ExceptionHandler(value= ParseException.class)
+    ResponseEntity<ApiResponse> handlingParseExcetion(AppException exception){
+
+        ApiResponse apiResponse = new ApiResponse();
+        apiResponse.setMessage(exception.getMessage());
+        apiResponse.setCode(ErrorCode.WRONGTOKEN.getCode());
         return ResponseEntity.badRequest().body(apiResponse);
     }
 

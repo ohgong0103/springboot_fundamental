@@ -5,7 +5,10 @@ public enum ErrorCode {
 
     UNCATEGORIED_EXCEPTION(9999,"Uncategorized error"),
     USERNAME_INVALID(1002,"User must be at least 3 characters"),
-    PASSWORD_INVALID(1003,"Password must be at least 8 character")
+    PASSWORD_INVALID(1003,"Password must be at least 8 character"),
+    USER_UNEXISTS(1004, "User not exists"),
+    UNAUTHENTICATED(1005, "Unauthenticated"),
+    WRONGTOKEN(1006,"Wrong token")
 
     ;
 
